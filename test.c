@@ -3,27 +3,45 @@
 #include <math.h>
 #include "quadro_solve.c"
 
-
-
 int main()
 {
-    double a = 0, b = 0, c = 0, x1, x2, res;
-    
-    scanf("%lf %lf %lf", &a, &b, &c);
+    double a = 0, b = 0, c = 0, x1 = 0, x2 = 0;
+    char answer[256];
 
-    res = quadro_solve(a, b, c, &x1, &x2);
+    // кусок кода ниже нашел в интернете. когда я просто делал цикл while до тех пор, пока scanf не вернет значение 3,
+    // цикл по какой-то причине становился бесконечным. я так и не разобрался почему
 
-    if (res == -1) {
-    	printf("Бесконечное множество решений\n");
+    fgets(answer, sizeof(answer), stdin);
+
+    while (sscanf(answer, "%lf %lf %lf", &a, &b, &c) != 3)
+    {
+        printf("Неверный формат ввода, введите вещественные числа\n");
+        fgets(answer, sizeof(answer), stdin);
     }
-    if (res == 0) {
-    	printf("Действительных корней не существует\n");
-    }
-    if (res == 1) {
-    	printf("x = %lf\n", x1);
-    }
-    if (res == 2) {
-    	printf("x1 = %lf\nx2 = %lf\n", x1, x2);
+
+    int res = quadro_solve(a, b, c, &x1, &x2);
+
+    switch (res)
+    {
+    case -1:
+        printf("Бесконечное множество решений\n");
+        break;
+
+    case 0:
+        printf("Действительных корней не существует\n");
+        break;
+
+    case 1:
+        printf("x = %lf\n", x1);
+        break;
+
+    case 2:
+        printf("x1 = %lf\nx2 = %lf\n", x1, x2);
+        break;
+
+    default:
+        printf("Ошибка. Не удалось найти значения корней\n");
+        return 1;
     }
 
     return 0;
