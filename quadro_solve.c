@@ -40,7 +40,7 @@ int quadro_solve(double a, double b, double c, double *x1, double *x2)
 			*x1 = (-b - sqrt(D)) / (2 * a);
 			*x2 = (-b + sqrt(D)) / (2 * a);
 
-			if (fabs(D) < 0.00001)
+			if (fabs(D) < small_int)
 			{
 				return 1;
 			}
