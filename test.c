@@ -3,13 +3,18 @@
 #include <math.h>
 #include "quadro_solve.c"
 
+/**
+    \brief The main function that imports quadro_solve and displays the value of each of the roots
+
+*/
+
 int main()
 {
     double a = 0, b = 0, c = 0, x1 = 0, x2 = 0;
     char answer[256];
 
     // кусок кода ниже нашел в интернете. когда я просто делал цикл while до тех пор, пока scanf не вернет значение 3,
-    // цикл по какой-то причине становился бесконечным. я так и не разобрался почему
+    // цикл по какой-то причине становился бесконечным. я так и не разобрался
 
     fgets(answer, sizeof(answer), stdin);
 
