@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "quadro_solve.c"
+#define ANSWER_SIZE 256
 
 /**
     \brief The main function that imports quadro_solve and displays the value of each of the roots
@@ -12,12 +13,11 @@ int main()
 {
     double a = 0, b = 0, c = 0, x1 = 0, x2 = 0;
     
-    printf("Введите три числа:\n");
-    while (scanf("%lf %lf %lf", &a, &b, &c) != 3)
+    do
     {
         printf("Введите три числа:\n");
         fflush(stdin);
-    }
+    } while (scanf("%lf %lf %lf", &a, &b, &c) != 3);
 
     int res = quadro_solve(a, b, c, &x1, &x2);
 
