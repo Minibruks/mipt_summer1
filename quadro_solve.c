@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <assert.h>
-#define small_int 1e-6
+#define SMALL_INT 1e-6
 
 /// Params description
 enum params
@@ -53,7 +53,7 @@ int quadro_solve(double a, double b, double c, double *x1, double *x2)
             *x1 = (-b - sqrt(D)) / (2 * a);
             *x2 = (-b + sqrt(D)) / (2 * a);
 
-            if (fabs(D) < small_int)
+            if (fabs(D) < SMALL_INT)
             {
                 return 1;
             }
