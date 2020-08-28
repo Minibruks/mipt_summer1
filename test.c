@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include "quadro_solve.c"
-#define ANSWER_SIZE 256
 
 /**
     \brief The main function that imports quadro_solve and displays the value of each of the roots
@@ -12,17 +11,12 @@
 int main()
 {
     double a = 0, b = 0, c = 0, x1 = 0, x2 = 0;
-    char answer[ANSWER_SIZE];
-
-    // кусок кода ниже нашел в интернете. когда я просто делал цикл while до тех пор, пока scanf не вернет значение 3,
-    // цикл по какой-то причине становился бесконечным. я так и не разобрался
-
-    fgets(answer, sizeof(answer), stdin);
-
-    while (sscanf(answer, "%lf %lf %lf", &a, &b, &c) != 3)
+    
+    printf("Введите три числа:\n");
+    while (scanf("%lf %lf %lf", &a, &b, &c) != 3)
     {
-        printf("Неверный формат ввода, введите вещественные числа\n");
-        fgets(answer, sizeof(answer), stdin);
+        printf("Введите три числа:\n");
+        fflush(stdin);
     }
 
     int res = quadro_solve(a, b, c, &x1, &x2);
