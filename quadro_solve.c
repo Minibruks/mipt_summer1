@@ -60,9 +60,6 @@ int quadro_solve(double a, double b, double c, double *x1, double *x2)
             if (D > 0)
             {
                 return 2;
-            } else
-            {
-                return 0;
             }
         }
     }
