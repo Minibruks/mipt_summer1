@@ -7,6 +7,9 @@
 #define ARR_SIZE 6
 
 
+void unit_tests(double a[], double b[], double c[], double x1[], double x2[], int num_of_sol[]);
+
+
 int main()
 {
     double a[ARR_SIZE] = {1, 2, 4, 1, 0, 3};
@@ -16,22 +19,29 @@ int main()
     double x2[ARR_SIZE] = {2, 1.58, NO_SOLUTIONS, 2, 4, 3};
     int num_of_sol[ARR_SIZE] = {1, 2, 0, 1, INF_SOLUTIONS, 2};
 
+    unit_tests(a, b, c, x1, x2, num_of_sol);
+
+    return 0;
+}
+
+
+void unit_tests(double a[], double b[], double c[], double x1[], double x2[], int num_of_sol[])
+{
     for (int i = 0; i < ARR_SIZE; i++)
-    {
-        int res = quadro_solve(a[i], b[i], c[i], &x1[i], &x2[i]);
-        if (res == num_of_sol[i])
         {
-            printf("Test %d: OK\n", i + 1);
-        } else
-        {
-            if (res == -1)
+            int res = quadro_solve(a[i], b[i], c[i], &x1[i], &x2[i]);
+            if (res == num_of_sol[i])
             {
-                printf("ERROR\nInput params: %lf, %lf, %lf\nExpected: %d solution(s)\nGot: infinite number of solutions\n", a[i], b[i], c[i], num_of_sol[i]);
+                printf("Test %d: OK\n", i + 1);
             } else
             {
-                printf("ERROR\nInput params: %lf, %lf, %lf\nExpected: %d solution(s)\nGot: %d solution(s)\n", a[i], b[i], c[i], num_of_sol[i], res);
+                if (res == -1)
+                {
+                    printf("ERROR\nInput params: %lf, %lf, %lf\nExpected: %d solution(s)\nGot: infinite number of solutions\n", a[i], b[i], c[i], num_of_sol[i]);
+                } else
+                {
+                    printf("ERROR\nInput params: %lf, %lf, %lf\nExpected: %d solution(s)\nGot: %d solution(s)\n", a[i], b[i], c[i], num_of_sol[i], res);
+                }
             }
         }
-    }
-    return 0;
 }
